@@ -1,6 +1,6 @@
 import './App.css'
 import { Button } from '@/components/ui/button'
-import Phrases from './components/Phrases'
+import Phrases from '@/components/phrases'
 
 function App() {
 

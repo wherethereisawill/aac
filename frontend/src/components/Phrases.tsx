@@ -36,7 +36,7 @@ export default function Phrases() {
   }
 
   return (
-    <div className='grid grid-cols-10 gap-4'>
+    <div className='grid grid-cols-5 lg:grid-cols-10 gap-4'>
     {phraseData.map((item) => (
         <button 
             key={item.phrase_id}
