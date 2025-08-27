@@ -1,9 +1,9 @@
 # uv run -m utils.uploadAudioFile
 from lib.supabase import supabase_client
 
-def upload_audio_file(audio_bytes: bytes, phrase_id: str, upsert: bool = False):
+def upload_audio_file(audio_bytes: bytes, phrase_id: str, voice_id: str, upsert: bool = False):
     filename = f"{phrase_id}.mp3"
-    path = filename
+    path = f"{voice_id}/{filename}"
     
     try:
         supabase_client.storage.from_("audio").upload(
@@ -24,4 +24,4 @@ def get_bytes_from_file(file_path: str) -> bytes:
     
 if __name__ == "__main__":
     audio_bytes = get_bytes_from_file("/Users/willnorris/Documents/Projects/aac/backend/files/test.mp3")
-    upload_audio_file(audio_bytes, "test")
+    upload_audio_file(audio_bytes, "test", "d9ed509b-e830-4ca2-b7f2-21bbb5c9e54d")
