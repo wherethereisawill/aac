@@ -37,3 +37,4 @@ def batch_create_audio(voice_id: str, upsert: bool = False):
 
 if __name__ == "__main__":
     batch_create_audio("f8e9967a-b36c-4833-94e3-059644a28f84", upsert=True)
+    batch_create_audio("d9ed509b-e830-4ca2-b7f2-21bbb5c9e54d", upsert=True)
