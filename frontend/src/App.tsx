@@ -10,7 +10,7 @@ function App() {
       <div className='flex flex-row justify-between mb-4'>
         <h1 className='text-3xl font-bold text-left'>AAC</h1>
         <div className='flex flex-row gap-2'>
-          <Button>Add phrase</Button>
+          <Button disabled>Add phrase</Button>
           <Settings />
         </div>
       </div>
