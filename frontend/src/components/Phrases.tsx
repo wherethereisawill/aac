@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { supabase } from "@/lib/supabase"
 import { cn } from "@/lib/utils"
+import { useVoiceStore } from "@/stores/voice"
 import { colourClassByName } from "@/utils/colours"
 import AutoFitText from "@/components/AutoFitText"
 
@@ -14,6 +15,7 @@ type Phrase = {
 export default function Phrases() {
 
   const [phraseData, setPhraseData] = useState<Phrase[]>([])
+  const { voice_id } = useVoiceStore()
 
   useEffect(() => {
     const fetchPhrases = async () => {
@@ -29,7 +31,7 @@ export default function Phrases() {
 
   const handleClick = (phrase_id: string) => {
     console.log(phrase_id)
-    const { data } = supabase.storage.from('audio').getPublicUrl(`d9ed509b-e830-4ca2-b7f2-21bbb5c9e54d/${phrase_id}.mp3`)
+    const { data } = supabase.storage.from('audio').getPublicUrl(`${voice_id}/${phrase_id}.mp3`)
 
     new Audio(data.publicUrl).play().catch(err => {
         console.error("Playback failed:", err)
