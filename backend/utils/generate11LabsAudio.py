@@ -10,7 +10,8 @@ def generate_11labs_audio_bytes(text: str, provider_voice_id: str, provider_mode
             voice_id=provider_voice_id,
             output_format="mp3_44100_128",
             text=text,
-            model_id=provider_model_id
+            model_id=provider_model_id,
+            previous_text="The word I'm going to say is: "
         ):
             audio_bytes += chunk
         return audio_bytes
@@ -25,13 +26,19 @@ def save_audio_to_file(audio_bytes: bytes, filename: str, path: str = "/Users/wi
     return filepath
 
 if __name__ == "__main__":
-    voice = get_voice("d9ed509b-e830-4ca2-b7f2-21bbb5c9e54d")
-    provider_voice_id = voice["provider_voice_id"]
-    provider_model_id = voice["provider_model_id"]
+    voice_ids = ["d9ed509b-e830-4ca2-b7f2-21bbb5c9e54d", "f8e9967a-b36c-4833-94e3-059644a28f84"]
+    
+    for voice_id in voice_ids:
+        voice = get_voice(voice_id)
+        provider_voice_id = voice["provider_voice_id"]
+        provider_model_id = voice["provider_model_id"]
 
-    audio_bytes = generate_11labs_audio_bytes(
-        text="This is a test", 
-        provider_voice_id=provider_voice_id,
-        provider_model_id=provider_model_id
-    )
-    save_audio_to_file(audio_bytes, "test.mp3")
+        test_words = ["Care", "get", "let's", "have", "I, me, my", "you're welcome"]
+
+        for word in test_words:
+            audio_bytes = generate_11labs_audio_bytes(
+                text=word, 
+                provider_voice_id=provider_voice_id,
+                provider_model_id=provider_model_id
+            )
+            save_audio_to_file(audio_bytes, f"{word}.mp3", f"/Users/willnorris/Documents/Projects/aac/backend/files/{voice_id}/v1")
