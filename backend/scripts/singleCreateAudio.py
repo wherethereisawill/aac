@@ -1,6 +1,6 @@
 # uv run -m scripts.singleCreateAudio
 from lib.supabase import supabase_client
-from utils.generate11LabsAudio import generate_11labs_audio_bytes
+from utils.generate11LabsAudio import generate_11labs_audio_bytes_v2
 from utils.uploadAudioFile import upload_audio_file
 from utils.getVoice import get_voice
 import pprint
@@ -18,7 +18,7 @@ def single_create_audio(phrase_id: str, voice_id: str, upsert: bool = False):
     text = phrase["text"]
     phrase_id = phrase["phrase_id"]
     try:
-            audio_bytes = generate_11labs_audio_bytes(
+            audio_bytes = generate_11labs_audio_bytes_v2(
                 text=phrase["text"], 
                 provider_voice_id=provider_voice_id,
                 provider_model_id=provider_model_id

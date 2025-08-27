@@ -13,6 +13,10 @@ def get_voice(voice_id: str):
         "provider_voice_id": provider_voice_id
     }
 
+def get_voices():
+    response = supabase_client.table("voices").select("*").execute()
+    return response.data
+
 if __name__ == "__main__":
     voice = get_voice("d9ed509b-e830-4ca2-b7f2-21bbb5c9e54d")
     pprint.pprint(voice)

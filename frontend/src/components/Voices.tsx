@@ -12,7 +12,7 @@ type Voice = {
     description: string
 }
 
-export default function Settings() {
+export default function Voices() {
     const [voiceData, setVoiceData] = useState<Voice[]>([])
     const { voice_id, setVoiceId } = useVoiceStore()
 
@@ -29,6 +29,15 @@ export default function Settings() {
         }
         fetchVoices()
     }, [])
+
+    const handleClick = (voice_id: string) => {
+        console.log(voice_id)
+        const { data } = supabase.storage.from('voice_previews').getPublicUrl(`${voice_id}.mp3`)
+    
+        new Audio(data.publicUrl).play().catch(err => {
+            console.error("Playback failed:", err)
+          })
+      }
 
     return (
         <>
@@ -54,6 +63,7 @@ export default function Settings() {
                                     onClick={(e) => {
                                         e.preventDefault()
                                         e.stopPropagation()
+                                        handleClick(voice.voice_id)
                                     }}
                                     size="sm"
                                     variant="outline"

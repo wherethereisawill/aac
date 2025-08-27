@@ -1,6 +1,6 @@
 import './App.css'
 import { Button } from '@/components/ui/button'
-import Settings from '@/components/Settings'
+import Voices from '@/components/Voices'
 import Phrases from '@/components/Phrases'
 
 function App() {
@@ -11,7 +11,7 @@ function App() {
         <h1 className='text-3xl font-bold text-left'>AAC</h1>
         <div className='flex flex-row gap-2'>
           <Button disabled>Add phrase</Button>
-          <Settings />
+          <Voices />
         </div>
       </div>
       <Phrases />
